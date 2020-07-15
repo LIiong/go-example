@@ -193,7 +193,9 @@ type response2 struct {
     Page   int      `json:"page"`
     Fruits []string `json:"fruits"`
 }
-
+/*
+json 格式化数据
+*/
 func main32() {
 
     bolB, _ := json.Marshal(true)
@@ -249,6 +251,8 @@ func main32() {
     json.Unmarshal([]byte(str), &res)
     fmt.Println(res)
     fmt.Println(res.Fruits[0])
+    res1,_ := json.Marshal(&res)
+    fmt.Println("...", string(res1))
 
     enc := json.NewEncoder(os.Stdout)
     d := map[string]int{"apple": 5, "lettuce": 7}
