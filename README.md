@@ -1,1 +1,1 @@
-go example
+go example study

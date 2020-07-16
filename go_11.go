@@ -271,7 +271,9 @@ func (p Plant) String() string {
     return fmt.Sprintf("Plant id=%v, name=%v, origin=%v",
         p.Id, p.Name, p.Origin)
 }
-
+/*
+xml 格式化
+*/
 func main33() {
     coffee := &Plant{Id: 27, Name: "Coffee"}
     coffee.Origin = []string{"Ethiopia", "Brazil"}
