@@ -70,9 +70,24 @@ func testSlice()  {
 	for k,v := range maps {
 		fmt.Printf("%s -> %s\n",k, v)
 	}
+	// fmt.Println(maps)
 }
 
 func printSlice(s string, x []int) {
 	fmt.Printf("%s len=%d cap=%d %v\n",
 		s, len(x), cap(x), x)
+}
+
+func printVar(v interface{}) {
+    fmt.Println(v)
+}
+
+func main11() {
+    printVar("hello world")
+    printVar(false)
+    printVar(20200716)
+    printVar([]int{1, 2, 3}) 
+    // 上面都是打印很简单的数据类型，我们打印个map试下
+    m := make(map[int]string) 
+	m[9] = "the 9th day"
 }

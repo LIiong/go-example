@@ -1,0 +1,27 @@
+apiVersion: apps/v1 #kubernetes 1.18 版本 apiVersion 从extensions/v1beta1 调整为apps/v1
+kind: Deployment
+metadata:
+  name: k8s-test-deployment
+spec:
+  replicas: 10 #指deployment要有10个pod
+  minReadySeconds: 10 #更新间隔，指在更新了一个pod后，需要在它进入正常状态后10秒再更新下一个pod
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1 #指同时处于不可用状态的pod不能超过一个
+      maxSurge: 1 #指多余的 pod 不能超过一个
+  selector:
+    matchLabels:
+      app: k8s-test
+  template:
+    metadata:
+      labels:
+        app: k8s-test
+    spec:
+      containers:
+        - name: k8s-test-pod
+        #   image: k8s-test:0.1
+          image: k8s-test:0.2 #修改时升级版本为0.2
+          ports:
+            - containerPort: 8080 #监听端口
+    

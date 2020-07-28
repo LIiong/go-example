@@ -1,5 +1,5 @@
 package main
 
 func main()  {
-	main12()
+	main_web()
 }

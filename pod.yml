@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: k8s-test
+  labels:
+    app: k8s-test #标签
+spec:
+  containers:
+    - name: k8s-test
+      image: k8s-test:0.1 #对应的docker镜像
+      ports:
+        - containerPort: 8080 #监听端口
