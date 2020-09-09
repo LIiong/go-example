@@ -24,6 +24,7 @@ func main34() {
         time.RFC3339,
         "2012-11-01T22:08:41+00:00")
     p(t1)
+    time.ParseInLocation("2006-01-02 15:04:05", "2020-08-17 17:43:09", time.Local)
 
     p(t.Format("3:04PM"))
     p(t.Format("Mon Jan _2 15:04:05 2006"))

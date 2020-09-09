@@ -16,9 +16,30 @@ func selectionSort(arr []int){
 		arr[i],arr[temp] = arr[temp],arr[i]
 	}
 }
+/*
+* 插入排序
+*/
+func insertionSort(arr []int){
+	n := len(arr)
+	if n <= 1 {
+		return
+	}
+	for i := 1; i < n; i++ {
+		value := arr[i]
+		j := i - 1
+		for ; j >= 0; j-- {
+			if value < arr[j] {
+				arr[j + 1] = arr[j]
+			} else {
+				break
+			}
+		}
+		arr[j + 1] = value
+	}
+}
 
 func selectionTest()  {
 	arr := []int{2,3,1,8,3,5,7,2,9}
-	selectionSort(arr)
+	insertionSort(arr)
 	fmt.Println(arr)
 }
