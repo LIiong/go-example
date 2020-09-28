@@ -6,7 +6,7 @@ import (
 /**
 * 快排
 */
-func quickSort(arr []int) []int {
+func quickSort1(arr []int) []int {
 	if len(arr) < 2 {
 		return arr
 	} 
@@ -20,7 +20,7 @@ func quickSort(arr []int) []int {
 			more = append(more, arr[i])
 		}
 	}
-	return append(append(quickSort(less),temp), quickSort(more)...)
+	return append(append(quickSort1(less),temp), quickSort1(more)...)
 }
 /**
 * 快排 原地排序节约空间
@@ -29,12 +29,12 @@ func quickSortNew(arr []int, start int, end int){
 	if start >= end {
 		return
 	}
-	p := partition(arr, start, end)
+	p := partition1(arr, start, end)
 	quickSortNew(arr, start, p - 1)
 	quickSortNew(arr, p + 1, end)
 }
 
-func partition(arr []int, start int, end int) int {
+func partition1(arr []int, start int, end int) int {
 	pivot := arr[end]
 	i := start
 	for j := start; j < end; j++ {
@@ -49,16 +49,16 @@ func partition(arr []int, start int, end int) int {
 /**
 *增加哨兵 减少交换次数
 */
-func quickSortNew1(arr []int, start int, end int)  {
+func quickSort(arr []int, start int, end int)  {
 	if start >= end {
 		return
 	}
-	p := partitionNew(arr, start, end)
-	quickSortNew1(arr, start, p - 1)
-	quickSortNew1(arr, p + 1, end)
+	p := partition(arr, start, end)
+	quickSort(arr, start, p - 1)
+	quickSort(arr, p + 1, end)
 }
 
-func partitionNew(arr []int, start int, end int) int {
+func partition(arr []int, start int, end int) int {
 	i := start
 	j := end
 	pivot := arr[i]
@@ -75,11 +75,47 @@ func partitionNew(arr []int, start int, end int) int {
 	arr[i] = pivot
 	return i
 }
+/*
+*/
+// func removeDuplicates(nums []int) int {
+
+// 	if len(nums) == 0 {
+// 		return 0
+// 	}
+// 	index := 1;
+//     for i := 1; i < len(nums); i++ {
+// 		flag := false
+// 		for j := 0; j < index; j++ {
+// 			if nums[j] == nums[i] {
+// 				flag = true
+// 				break
+// 			}
+// 		}
+// 		if !flag {
+// 			nums[index] = nums[i]
+// 			index++
+// 		}
+// 	}
+// 	nums = append(nums[:index])
+// 	fmt.Println(nums)
+// 	return index
+// }
+
+func removeDuplicates(nums []int) int {
+	for i:=len(nums)-1; i>0; i-- {
+		if nums[i] == nums[i-1] {
+			nums = append(nums[:i], nums[i+1:]...)
+		}
+	}
+	fmt.Println(nums)
+	return len(nums)
+}
 
 func quickSortTest()  {
-	arr := []int{1,4,6,2,9,2,4,6,1}
+	arr := []int{0,0,1,1,1,2,2,3,3,4}
 	// arr = quickSort(arr)
 	// quickSortNew(arr, 0, len(arr) - 1)
-	quickSortNew1(arr, 0, len(arr) - 1)
+	size := removeDuplicates(arr)
 	fmt.Println(arr)
+	fmt.Println(size)
 }
